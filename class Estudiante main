@@ -1,0 +1,18 @@
+#include "Estudiante.h"
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+int main()
+{
+	//Declara un objeto de la clase
+	Estudiante alumno;
+	string nombre;
+	cout << "Ingrese el nombre : ";
+	getline(cin, nombre);
+	alumno.set_nombre(nombre); //Llamando al metodo set_nombre de la clase Estudiante a traves del objeto alumno
+	cout << "El nombre del estudiante es: " << alumno.get_nombre();//Muestra la variable de la clase
+	cout << "El nombre es: " << nombre;//Muestra la variable local
+	return 0;
+}
