@@ -1,0 +1,22 @@
+#pragma once
+#include<iostream>
+#include<string>
+using namespace std;
+
+class Estudiante
+{
+    private:
+        string nombre;
+        int edad;
+        string materia;
+        float calificación;
+    public:
+        Estudiante();
+        ~Estudiante();
+        void set_nombre(string _n);
+        string get_nombre();
+        int get_edad();
+        string get_materia();
+        float get_calificacion();
+};
+
