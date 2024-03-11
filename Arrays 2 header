@@ -1,0 +1,18 @@
+#pragma once
+#include<iostream>
+using namespace std;
+
+class Arrays
+{
+   private:
+	   int n;
+   public:
+	   Arrays(int n) {
+		   this->n = n;
+	   }
+	   void CargarArray(int A[]);
+	   void MostrarArray(int A[]);
+	   void SumaArrays(int X[], int Y[]);
+	   void MostrarArrayMayor(int X[], int Y[]);
+};
+
