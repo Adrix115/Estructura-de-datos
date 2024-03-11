@@ -1,0 +1,22 @@
+#include<iostream>
+#include"arrays.h"
+using namespace std;
+
+int main() {
+
+	int A[5]; int B[5];
+	Arrays array2(5);
+
+	cout << "Cargando el Vector A..." << endl;
+	array2.CargarArray(A);
+	cout << "Cargando el Vector B..." << endl;
+	array2.CargarArray(B);
+	cout <<"El arreglo A es" << endl;
+	array2.MostrarArray(A);
+	cout << "El arreglo B es" << endl;
+	array2.MostrarArray(B);
+	array2.SumaArrays(A, B);
+	array2.MostrarArrayMayor(A, B);
+
+	return 0;
+}
