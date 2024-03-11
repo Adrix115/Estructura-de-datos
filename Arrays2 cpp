@@ -1,0 +1,39 @@
+#include "Arrays.h"
+#include<iostream>
+
+using namespace std;
+
+void Arrays::CargarArray(int A[]) {
+	for (int i = 0; i < n; i++) {
+		cout << "Ingrese el numero " << i + 1 << endl;
+		cin >> A[i];
+	}
+}
+void Arrays::MostrarArray(int A[]) {
+	for (int i = 0; i < n; i++) {
+		cout << A[i]<< " "<<endl;
+	}
+}
+
+void Arrays::SumaArrays(int X[], int Y[]) {
+	int suma = 0;
+	for (int i = 0; i < n; i++) {
+		suma += (X[i] + Y[i]);
+	}
+	cout << "La suma es " << suma;
+}
+void Arrays::MostrarArrayMayor(int X[], int Y[]) {
+	int sumaA = 0;
+	int sumaB = 0;
+
+	for (int i = 0; i < n; i++) {
+		sumaA += X[i];
+		sumaB += Y[i];
+	}
+	if (sumaA > sumaB) {
+		cout << " La suma del vector A es mayor y es " << sumaA;
+	}
+	if (sumaB > sumaA) {
+		cout << " La suma del vector B es mayor y es " << sumaB;
+	}
+}
