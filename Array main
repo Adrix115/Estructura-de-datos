@@ -1,0 +1,24 @@
+
+#include<iostream>
+#include"Arrayheader.h"
+
+using namespace std;
+
+int main() {
+    
+    int mayor, menor;
+    float promedio;
+    int A[] = { {1},{3},{5},{7},{9} };
+    //Instancia la clase
+
+    Array array1(5);
+    array1.MostrarArray(A);
+    mayor=array1.MostrarMayor(A);
+    cout <<"\nEl mayor numero es " << mayor;
+    menor = array1.MostrarMenor(A);
+    cout << "\nEl menor numero es " << menor;
+    promedio = array1.MostrarPromedio(A);
+    cout << "\nEl promedio es " << promedio;
+
+    return 0;
+}
