@@ -1,0 +1,76 @@
+#include <iostream>
+#include "Letra.h"
+using namespace std;
+
+int main() {
+	int opc;
+	Letra chara;
+	do {
+		system("cls");
+		cout << " 1.Longitud de una cadena \n 2.Comparacion \n 3.Contar vocales \n 4.sacar un substr\n 5.Intercambiar \n 6.encontrar caracteres \n 7.Invertir una frase\n 8.Palindromo\n 0. salir \n";
+		do {
+			cin >> opc;
+			if (opc < 0 || opc>8) cout << "INGRESE UN NUMERO VALIDO \n";
+		} while (opc < 0 || opc>8);
+		cin.ignore();
+		switch (opc) {
+		case 1: {
+			cout << "Ingresar la cadena que quieres contabilizar" << endl;
+			chara.setcadena();
+			cout << "La longitud es de: " << chara.longitud()<<endl;
+		}
+			  break;
+		case 2: {
+			cout << "Ingresar la cadena 1 que quieres contabilizar" << endl;
+			chara.setcadena();
+			cout << "Ingresa la cadena 2 que compararas" << endl;
+			chara.setcadena2();
+			if (chara.comparacion() != 0) { cout << "NO SON IGUALES" << endl; }
+			else cout << "SON IGUALES" << endl;
+		}
+			  break;
+		case 3: {
+			cout << "Ingresar la cadena que quieres contar sus vocales" << endl;
+			chara.setcadena();
+			cout<<"La cantidad de vocales es de :  "<<chara.contarvocal()<<endl; }
+			  break;
+		case 4: {
+			cout << "Ingresar la cadena que quieres obtener su substr" << endl;
+			chara.setcadena();
+			chara.sacarsbtr();
+		}
+			  break;
+		case 5: {
+			cout << "Ingresa la cadena 1" << endl;
+			chara.setcadena();
+			cout << "Ingresa la cadena con la que vas a intercambiar" << endl;
+			chara.setcadena2();
+			chara.intercambiar();
+		}
+			  break;
+		case 6: {
+			cout << "Ingresa la cadena en la que buscaras" << endl;
+			chara.setcadena();
+			cout << "Ingresa la sub cadena que quieres encontrar en ella" << endl;
+			chara.setcadena2();
+			chara.encontrarchar();
+		}
+			  break;
+		case 7: {
+			cout << "Ingresarla cadena que quieres invertir" << endl;
+			chara.setcadena();
+			chara.invertirfrase();
+		}
+			  break;
+		case 8: {
+			cout << "Ingresa la cadena que quieres ver si es palind." << endl;
+			chara.setcadena();
+			chara.determinarpal();
+		}
+			  break;
+		}
+		system("pause");
+	} while (opc != 0);
+	return 0;
+
+}
