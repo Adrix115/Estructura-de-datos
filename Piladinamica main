@@ -1,5 +1,5 @@
 #include <stdlib.h>
-#include"pila.h"
+#include"Pila.h"
 
 int main() {
     nodo nuevo;
