@@ -1,0 +1,13 @@
+#include"nodo.h"
+class Pila {
+    nodo* inicio;//Tope
+public:
+    Pila() {
+        inicio = NULL;
+    }
+    void push();
+    void pop();
+    void show();
+    void top();
+    void size();
+};
