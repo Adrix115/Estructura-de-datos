@@ -14,7 +14,6 @@ void modificarUsuario(int id, const string& nombre, int numeroHijos, int edad) {
             usuario.setNumeroHijos(numeroHijos);
             usuario.setEdad(edad);
 
-            // Mueve el puntero del archivo al inicio del registro del usuario
             file.seekp(file.tellg() - streampos(sizeof(Usuario)));
             file.write((char*)&usuario, sizeof(Usuario));
             found = true;
