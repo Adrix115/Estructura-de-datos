@@ -1,0 +1,102 @@
+
+
+#include <string>
+using namespace std;
+
+class Usuario {
+private:
+    int id;
+    string nombre;
+    int numeroHijos;
+    int edad;
+
+public:
+    Usuario(int id, string nombre, int numeroHijos, int edad);
+    void setId(int id);
+    void setNombre(string nombre);
+    void setNumeroHijos(int numeroHijos);
+    void setEdad(int edad);
+    int getId() ;
+    string getNombre() ;
+    int getNumeroHijos() ;
+    int getEdad() ;
+};
+
+
+#include "Usuario.h"
+
+Usuario::Usuario(int id, string nombre, int numeroHijos, int edad)
+    : id(id), nombre(nombre), numeroHijos(numeroHijos), edad(edad) {}
+
+void Usuario::setId(int id) {
+    this->id = id;
+}
+
+void Usuario::setNombre(string nombre) {
+    this->nombre = nombre;
+}
+
+void Usuario::setNumeroHijos(int numeroHijos) {
+    this->numeroHijos = numeroHijos;
+}
+
+void Usuario::setEdad(int edad) {
+    this->edad = edad;
+}
+
+int Usuario::getId()  {
+    return id;
+}
+
+string Usuario::getNombre()  {
+    return nombre;
+}
+
+int Usuario::getNumeroHijos()  {
+    return numeroHijos;
+}
+
+int Usuario::getEdad()  {
+    return edad;
+}
+#include <iostream>
+#include <fstream>
+#include "Usuario.h"
+
+void modificarUsuario(int id, const string& nombre, int numeroHijos, int edad) {
+    fstream file("usuarios.dat", ios::in | ios::out | ios::binary);
+    if (!file) {
+        cerr << "No se pudo abrir el archivo." << endl;
+        return;
+    }
+
+    Usuario usuario;
+    bool found = false;
+
+    while(file.read((char*)&usuario, sizeof(Usuario))) {
+        if (usuario.getId() == id) {
+            usuario.setNombre(nombre);
+            usuario.setNumeroHijos(numeroHijos);
+            usuario.setEdad(edad);
+
+            // Mueve el puntero del archivo al inicio del registro del usuario
+            file.seekp(file.tellg() - streampos(sizeof(Usuario)));
+            file.write((char*)&usuario, sizeof(Usuario));
+            found = true;
+            break;
+        }
+    }
+
+    if (!found) {
+        cout << "Usuario no encontrado." << endl;
+    } else {
+        cout << "Usuario modificado exitosamente." << endl;
+    }
+
+    file.close();
+}
+
+int main() {
+    modificarUsuario(1, "Nuevo Nombre", 2, 30);
+    return 0;
+}
