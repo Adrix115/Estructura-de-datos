@@ -66,7 +66,7 @@ int Usuario::getEdad()  {
 void modificarUsuario(int id, const string& nombre, int numeroHijos, int edad) {
     fstream file("usuarios.dat", ios::in | ios::out | ios::binary);
     if (!file) {
-        cerr << "No se pudo abrir el archivo." << endl;
+        cout << "No se pudo abrir el archivo." << endl;
         return;
     }
 
