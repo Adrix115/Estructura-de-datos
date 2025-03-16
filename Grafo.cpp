@@ -6,7 +6,7 @@ int main() {
     ifstream archivo(nombreArchivo);
     bool dirigido, etiquetado = true;
     if (archivo) {
-        // Si el archivo existe, se carga el grafo desde él
+        // Si el archivo existe, se carga el grafo desde Ã©l
         grafo.cargarDesdeArchivo(nombreArchivo);
     }
     else {
