@@ -3,12 +3,12 @@
 #include <string>
 using namespace std;
 
-// Función auxiliar para obtener el máximo entre dos enteros.
+// FunciÃ³n auxiliar para obtener el mÃ¡ximo entre dos enteros.
 int myMax(int a, int b) {
     return (a > b) ? a : b;
 }
 
-// Definición de nodo
+// DefiniciÃ³n de nodo
 struct TreeNode {
     int value;
     TreeNode* left;
@@ -17,12 +17,12 @@ struct TreeNode {
     TreeNode(int val) : value(val), left(nullptr), right(nullptr), height(1) {}
 };
 
-// Clase base abstracta para árboles
+// Clase base abstracta para Ã¡rboles
 class BinaryTree {
 protected:
     TreeNode* root;
 
-    // Función para serializar el árbol en preorden con marcador '#' para nodos nulos.
+    // FunciÃ³n para serializar el Ã¡rbol en preorden con marcador '#' para nodos nulos.
     void serialize(ostream& out, TreeNode* node) {
         if (!node) {
             out << "# ";
@@ -33,7 +33,7 @@ protected:
         serialize(out, node->right);
     }
 
-    // Función para deserializar el árbol a partir de la representación generada.
+    // FunciÃ³n para deserializar el Ã¡rbol a partir de la representaciÃ³n generada.
     TreeNode* deserialize(istream& in) {
         string token;
         if (!(in >> token))
@@ -80,7 +80,7 @@ public:
 
     TreeNode* getRoot() { return root; }
 
-    // Guarda la estructura completa del árbol en el archivo indicado.
+    // Guarda la estructura completa del Ã¡rbol en el archivo indicado.
     void saveTree(const string& filename) {
         ofstream file(filename);
         if (!file) {
@@ -92,7 +92,7 @@ public:
         cout << "Arbol guardado en " << filename << endl;
     }
 
-    // Carga la estructura completa del árbol desde el archivo indicado.
+    // Carga la estructura completa del Ã¡rbol desde el archivo indicado.
     void loadTree(const string& filename) {
         ifstream file(filename);
         if (!file) {
@@ -106,12 +106,12 @@ public:
 };
 
 // =======================================
-// Árbol Binario Común (sin orden)
+// Ãrbol Binario ComÃºn (sin orden)
 // =======================================
 class CommonBinaryTree : public BinaryTree {
 public:
-    // Inserta de forma recursiva: si hay espacio en el subárbol izquierdo, lo usa; si no, en el derecho; 
-    // en caso de tener ambos hijos, se recurre al subárbol izquierdo.
+    // Inserta de forma recursiva: si hay espacio en el subÃ¡rbol izquierdo, lo usa; si no, en el derecho; 
+    // en caso de tener ambos hijos, se recurre al subÃ¡rbol izquierdo.
     void insert(int value) override {
         if (!root)
             root = new TreeNode(value);
@@ -119,7 +119,7 @@ public:
             insertRec(root, value);
     }
 
-    // Eliminación de nodo en árbol binario común.
+    // EliminaciÃ³n de nodo en Ã¡rbol binario comÃºn.
     void remove(int value) override {
         root = removeNode(root, value);
     }
@@ -135,17 +135,17 @@ private:
             return;
         }
         else {
-            // Se inserta en el subárbol izquierdo (método simple; podría alternarse para balancear)
+            // Se inserta en el subÃ¡rbol izquierdo (mÃ©todo simple; podrÃ­a alternarse para balancear)
             insertRec(node->left, value);
         }
     }
 
-    // Función para eliminar un nodo en un árbol binario común usando recorrido en nivel.
+    // FunciÃ³n para eliminar un nodo en un Ã¡rbol binario comÃºn usando recorrido en nivel.
     TreeNode* removeNode(TreeNode* root, int value) {
         if (!root)
             return root;
 
-        // Si el árbol tiene un solo nodo
+        // Si el Ã¡rbol tiene un solo nodo
         if (!root->left && !root->right) {
             if (root->value == value) {
                 delete root;
@@ -160,7 +160,7 @@ private:
         TreeNode* lastNode = nullptr;
         TreeNode* parentOfLast = nullptr;
 
-        // Usamos un arreglo fijo para simular una cola (tamaño máximo 100 nodos)
+        // Usamos un arreglo fijo para simular una cola (tamaÃ±o mÃ¡ximo 100 nodos)
         TreeNode* queue[100];
         int front = 0, rear = 0;
         queue[rear++] = root;
@@ -180,9 +180,9 @@ private:
         }
 
         if (keyNode) {
-            // Reemplazamos el valor del nodo a eliminar por el del nodo más profundo (último en nivel)
+            // Reemplazamos el valor del nodo a eliminar por el del nodo mÃ¡s profundo (Ãºltimo en nivel)
             keyNode->value = lastNode->value;
-            // Ahora eliminamos el último nodo
+            // Ahora eliminamos el Ãºltimo nodo
             if (parentOfLast) {
                 if (parentOfLast->right == lastNode)
                     parentOfLast->right = nullptr;
@@ -190,7 +190,7 @@ private:
                     parentOfLast->left = nullptr;
             }
             else {
-                // Si no hay padre, el árbol se queda vacío
+                // Si no hay padre, el Ã¡rbol se queda vacÃ­o
                 root = nullptr;
             }
             delete lastNode;
@@ -200,7 +200,7 @@ private:
 };
 
 // =======================================
-// Árbol Binario de Búsqueda (BST)
+// Ãrbol Binario de BÃºsqueda (BST)
 // =======================================
 class BinarySearchTree : public BinaryTree {
 public:
@@ -223,7 +223,7 @@ private:
         return node;
     }
 
-    // Función para encontrar el nodo mínimo en el subárbol derecho.
+    // FunciÃ³n para encontrar el nodo mÃ­nimo en el subÃ¡rbol derecho.
     TreeNode* minValueNode(TreeNode* node) {
         TreeNode* current = node;
         while (current && current->left)
@@ -252,7 +252,7 @@ private:
                 delete temp;
             }
             else {
-                // Nodo con dos hijos: se busca el sucesor (menor en el subárbol derecho)
+                // Nodo con dos hijos: se busca el sucesor (menor en el subÃ¡rbol derecho)
                 TreeNode* temp = minValueNode(node->right);
                 node->value = temp->value;
                 node->right = deleteRec(node->right, temp->value);
@@ -263,7 +263,7 @@ private:
 };
 
 // =======================================
-// Árbol AVL
+// Ãrbol AVL
 // =======================================
 class AVLTree : public BinaryTree {
 public:
@@ -315,7 +315,7 @@ private:
         node->height = 1 + myMax(getHeight(node->left), getHeight(node->right));
         int balance = getBalance(node);
 
-        // Rotación simple o doble según corresponda
+        // RotaciÃ³n simple o doble segÃºn corresponda
         if (balance > 1 && value < node->left->value)
             return rotateRight(node);
         if (balance < -1 && value > node->right->value)
@@ -331,7 +331,7 @@ private:
         return node;
     }
 
-    // Función auxiliar similar a la de BST para encontrar el nodo mínimo.
+    // FunciÃ³n auxiliar similar a la de BST para encontrar el nodo mÃ­nimo.
     TreeNode* minValueNode(TreeNode* node) {
         TreeNode* current = node;
         while (current && current->left)
@@ -386,10 +386,10 @@ private:
 };
 
 // =======================================
-// Menú principal
+// MenÃº principal
 // =======================================
 int main() {
-    // Se crean instancias de cada árbol
+    // Se crean instancias de cada Ã¡rbol
     CommonBinaryTree commonTree;
     BinarySearchTree bst;
     AVLTree avl;
